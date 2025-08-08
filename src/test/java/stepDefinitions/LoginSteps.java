@@ -1,23 +1,43 @@
 package stepDefinitions;
 
+import java.time.Duration;
+import java.util.HashMap;
+
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.*;
 import pageObjects.Login;
 
 
-public class LoginSteps {
+public class LoginSteps extends BaseClass{
 	
-	public WebDriver driver;
-	public Login login;
-	
+
 	
 
 	@Given("User launches Chrome Browser")
 	public void user_launches_chrome_browser() {
-		driver=new ChromeDriver();
+		
+		 ChromeOptions options = new ChromeOptions();
+	        options.addArguments("--disable-blink-features=AutomationControlled");
+	        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+	        options.setExperimentalOption("useAutomationExtension", false);
+
+	        driver = new ChromeDriver(options);
+
+	        // Mask navigator.webdriver
+	        ((JavascriptExecutor) driver).executeScript(
+	            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+	        );
+	        
+	        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36");
+
+
 		login=new Login(driver);
     
 }
@@ -39,8 +59,14 @@ public class LoginSteps {
 }
 
 	@When("User clicks the login button")
-	public void user_clicks_the_login_button() {
+	public void user_clicks_the_login_button() throws InterruptedException {
 		login.clickLogin();
+		try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
    
 }
 
@@ -51,6 +77,8 @@ public class LoginSteps {
 			driver.close();
 			Assert.fail("Login was unsuccessful.");}
 		else {
+			 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		        wait.until(ExpectedConditions.titleIs(title));
 			Assert.assertEquals(driver.getTitle(), title);
 			  
 		}}
