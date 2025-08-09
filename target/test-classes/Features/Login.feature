@@ -4,6 +4,8 @@ Feature: Admin Login to nopCommerce
   I want to log in to the nopCommerce admin dashboard
   So that I can manage the website
 
+
+@sanity
   Scenario: Successful login with valid credentials
     Given User launches Chrome Browser
     When User opens URL "https://admin-demo.nopcommerce.com/login"
@@ -14,7 +16,8 @@ Feature: Admin Login to nopCommerce
     Then Login title should be "nopCommerce demo store. Login"
     And Close browser
     
-    
+  
+  @regression  
   Scenario Outline: Login Data Driven
   
   	Given User launches Chrome Browser

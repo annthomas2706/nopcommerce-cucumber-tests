@@ -1,5 +1,6 @@
-Feature: AAdding details for New Customer in nopCommerce admin
+Feature: Adding details for New Customer in nopCommerce admin
 
+@sanity
   Scenario: Add New Customer
     Given User launches Chrome Browser
     When User opens URL "https://admin-demo.nopcommerce.com/login"
@@ -15,6 +16,7 @@ Feature: AAdding details for New Customer in nopCommerce admin
     And close browser
     
    
+   @regression
    Scenario: Search Customer by Email
     Given User launches Chrome Browser
     When User opens URL "https://admin-demo.nopcommerce.com/login"

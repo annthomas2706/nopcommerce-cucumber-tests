@@ -8,11 +8,13 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		
-		features="src/test/java/Features",
+		features="src/test/java/Features/Customer.feature",
 		glue="stepDefinitions",
 		dryRun=false,//true  will crosscheck for every steps in feature, methods are created in stepdefinition
 		monochrome=true,//remove unnecessary characters in console window
-		plugin= {"pretty","html:target/cucumber-reports/Cucumber.html"})//to make report in console window  more clearer and create an html report inside test-output folder
+		plugin= {"pretty","html:target/cucumber-reports/Cucumber.html"},//to make report in console window  more clearer and create an html report inside test-output folder
+		tags= "@sanity"
+		)
 public class Runner {
 
 }

@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
 
 import pageObjects.AddcustomerPage;
@@ -14,11 +16,21 @@ public class BaseClass {
 	public Login login;
 	public AddcustomerPage customPage;
 	public SearchCustomerPage srchCstmrPage;
+	public static Logger logger;
+	
+	static {
+        logger = LogManager.getLogger(BaseClass.class);
+    }
+	
 	
 	 public static String generateRandomString() {
+		
 	        return RandomStringUtils.randomAlphabetic(5);
+	        
 	    }
-	 public static String email=generateRandomString()+"@gmail.com";;
+	 public static String email=generateRandomString()+"@gmail.com";
+	 
+	 
 			 
 			
 }
