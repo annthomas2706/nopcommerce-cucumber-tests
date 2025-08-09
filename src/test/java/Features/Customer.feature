@@ -13,6 +13,8 @@ Feature: Adding details for New Customer in nopCommerce admin
     Then User can view Add new customer page
     When User enters customer Info
     And click on save button
+    When User clicks out Logout button
+    Then Login title should be "nopCommerce demo store. Login"
     And close browser
     
    
@@ -28,4 +30,6 @@ Feature: Adding details for New Customer in nopCommerce admin
     And Enter Customer Email
     When click on Search button
     Then User should found email on search table
+     When User clicks out Logout button
+    Then Login title should be "nopCommerce demo store. Login"
     And close browser

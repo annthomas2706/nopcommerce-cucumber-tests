@@ -49,8 +49,12 @@ public class LoginSteps extends BaseClass{
 	@When("User opens URL {string}")
 	public void user_opens_url(String url) {
 		
+		logger.info("Opening the Page");;
+		
 		driver.get(url);
 		driver.manage().window().maximize();
+		
+		logger.info("Page Opened");
     
 }
 
